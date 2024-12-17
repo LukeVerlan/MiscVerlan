@@ -9,7 +9,6 @@ public class Connect4 {
         String [][] board = new String[rows][columns];
         int turn = 0; 
         int winState = -1;
-
         FillBoard(board, rows, columns);
 
         while(turn < 42) {
@@ -68,9 +67,18 @@ public class Connect4 {
         PrintBoard(board, rows, columns);
         System.out.println();
 
-        System.out.println("Which Column would you like to place your token? (1-7)");
-        int userColumn = user.nextInt(); 
-        userColumn--; 
+        int userColumn = -1; 
+
+         while(userColumn > 7 || userColumn < 1) {
+            System.out.println("Which Column would you like to place your token? (1-7)");
+            userColumn = user.nextInt(); 
+            if(userColumn > 7 || userColumn < 1){
+                System.out.println("Number outside of column range");
+                System.out.println();
+            }
+        }
+
+        userColumn--;
 
         DropToken(board, userColumn, token, rows);
 
