@@ -11,7 +11,7 @@ public class Connect4 {
         int winState = -1;
         FillBoard(board, rows, columns);
 
-        while(turn < 42) {
+        while(!CheckTie(board)) {
 
             turn++; 
             PlayGame(board, turn, rows, columns, user);
@@ -30,7 +30,7 @@ public class Connect4 {
         PrintBoard(board, rows, columns);
 
         if(winState == -1){
-            System.out.println("Tie :( ");
+            System.out.println("Tie :D");
         }
 
         if(winState == 1){
@@ -40,6 +40,18 @@ public class Connect4 {
         if(winState == 2){
             System.out.println("Player O WiNS!");
         }
+    }
+
+    public static boolean CheckTie (String[][] board) {
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 7; j++){
+                if(board[i][j] == "-"){
+                    return false; 
+                }
+            }
+        }
+
+        return true; 
     }
 
     public static void FillBoard (String[][] board, int rows, int columns) {
@@ -80,11 +92,12 @@ public class Connect4 {
 
         userColumn--;
 
-        DropToken(board, userColumn, token, rows);
+        DropToken(board, userColumn, token, rows, columns, user, turn);
 
     }
 
-    public static void  DropToken (String[][] board, int userColumn, String token, int rows) {
+    public static void DropToken (String[][] board, int userColumn, String token, int rows, 
+        int columns, Scanner user, int turn) {
 
         String[] column = getColumn(board, userColumn, rows);
         String index = "-";
@@ -93,8 +106,8 @@ public class Connect4 {
         while(index == "-") {
             index = column[counter];
             if(index != "-" && counter == 0){
-                System.out.println("Column full, Turn Skipped");
-                break;
+                System.out.println("Column full, Try again");
+                PlayGame(board, turn, rows, columns, user);
             } else if (index != "-" && counter > 0){
                 column[counter - 1] = token; 
                 break;
