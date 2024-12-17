@@ -26,21 +26,20 @@ public class Connect4 {
                 winState = 2; 
                 break; 
             }
-
         } 
 
         PrintBoard(board, rows, columns);
 
         if(winState == -1){
-            System.out.println("Tie :(");
+            System.out.println("Tie :( ");
         }
 
         if(winState == 1){
-            System.out.println("Player 1 WINS!");
+            System.out.println("Player X WINS!");
         }
 
         if(winState == 2){
-            System.out.println("Player 2 WiNS!");
+            System.out.println("Player O WiNS!");
         }
     }
 
@@ -112,7 +111,7 @@ public class Connect4 {
 
         for(int i = 0; i < 6; i++) {
         
-            for(int j = 0; j < 3; j++) {
+            for(int j = 0; j < 4; j++) {
                 String[] rowState = new String[4];
                 int counterR = 0; 
                 for(int k = lower; k < upper; k++) {
