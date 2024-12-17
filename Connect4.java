@@ -1,5 +1,6 @@
 import java.util.*;
 
+// Plays Connect 4 
 public class Connect4 {
 
     public static void main(String[] args){
@@ -13,7 +14,7 @@ public class Connect4 {
 
         while(!CheckTie(board)) {
 
-            turn++; 
+            turn++; // used to track whos turn it is
             PlayGame(board, turn, rows, columns, user);
     
             if(CheckWin(board,rows) == 1){
@@ -41,7 +42,9 @@ public class Connect4 {
             System.out.println("Player O WiNS!");
         }
     }
-
+    
+    // Checks to see if board is full 
+    // When the board fills up, tie occurs
     public static boolean CheckTie (String[][] board) {
         for(int i = 0; i < 6; i++){
             for(int j = 0; j < 7; j++){
@@ -54,6 +57,7 @@ public class Connect4 {
         return true; 
     }
 
+    // Fills board with "-"
     public static void FillBoard (String[][] board, int rows, int columns) {
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < columns; j++){
@@ -62,6 +66,7 @@ public class Connect4 {
         }
     }   
 
+    // Plays the game 
     public static void PlayGame (String[][] board, int turn, int rows, int columns, Scanner user){
         String token = "E";
 
@@ -94,8 +99,10 @@ public class Connect4 {
 
         DropToken(board, userColumn, token, rows, columns, user, turn);
 
-    }
+    }   
 
+    // Creates dropping token into slot effect 
+    // Calls play game in event of dropping in a full column 
     public static void DropToken (String[][] board, int userColumn, String token, int rows, 
         int columns, Scanner user, int turn) {
 
@@ -125,9 +132,10 @@ public class Connect4 {
         }
     }
 
+    // Checks to see if there is a win on the board in either of the columns, rows, or diagonals
     public static int CheckWin(String[][] board, int rows) {
 
-        int upper = 4;
+        int upper = 4; // Used to shift the win state being checked 
         int lower = 0;
 
         for(int i = 0; i < 6; i++) {
@@ -232,7 +240,7 @@ public class Connect4 {
         return -1; 
     }
 
-
+    // Checks to see if all elements in a win state are the same 
     public static boolean CheckForContinuity (String[] state) {
 
         boolean[] continuity = new boolean[4];
@@ -255,6 +263,7 @@ public class Connect4 {
         return false; 
     }
 
+    // Prints the current playing board into the console 
     public static void PrintBoard (String[][] board, int rows, int columns){
 
         for(int i = 0; i < rows; i++){
@@ -265,6 +274,7 @@ public class Connect4 {
         }
     }
 
+    // Gets the requested column from the board 
     public static String[] getColumn(String[][] board, int userColumn, int rows) {
         String[] column = new String[rows];
         for(int i = 0; i < rows; i++){
@@ -273,6 +283,7 @@ public class Connect4 {
         return column;
     } 
 
+    // Gets a requested diagonal using a start point and a direction to take the diagonal in
     public static String[] getDiagonalState(String[][] board, int[] start, char direction) {
 
         String[] diag = new String[4];
@@ -303,4 +314,4 @@ public class Connect4 {
 
         return null; 
     }
-}
+}   
