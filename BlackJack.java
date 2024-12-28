@@ -4,7 +4,7 @@ public class BlackJack {
     public static void main(String[] args){
 
         Scanner console = new Scanner(System.in);
-        System.out.print("What is your table buy-in? (minimum bet is $5): "); 
+        System.out.print("What is your table buy-in? "); 
         int[] money = new int[1]; 
         money[0] = console.nextInt();
         double startMoney = money[0]; 
@@ -17,7 +17,7 @@ public class BlackJack {
         double finishMoney = 0; 
         
 
-        while(isPlay == 1) {
+        while(isPlay == 1 && money[0] > 0 ) {
             handNumber++;
             int bet = setupHand(player, dealer, money, handNumber, console);
             money[0] -= bet; 
